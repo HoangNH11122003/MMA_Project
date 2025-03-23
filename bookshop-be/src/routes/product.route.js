@@ -5,9 +5,7 @@ const ProductRouter = express.Router();
 
 ProductRouter.post("/create", async (req, res, next) => {
     try {
-        const { name, price, description, unitInStock, category } = req.body;
-        console.log(req.body);
-        const newProduct = await db.Product.create({ name, price, description, unitInStock, category });
+        const newProduct = await db.Product.create(req.body);
 
         //Insert one
         await newProduct.save().then(newDoc => {
